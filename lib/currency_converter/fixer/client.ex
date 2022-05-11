@@ -1,11 +1,14 @@
 defmodule CurrencyConverter.Fixer.Client do
+  @moduledoc """
+  Client HTTP for fixer.io
+  """
   use Tesla
 
   plug Tesla.Middleware.BaseUrl, base_url()
   plug Tesla.Middleware.Headers, [{"apikey", apikey()}]
   plug Tesla.Middleware.JSON
 
-  def convert(from, to, amount) do
+  def get_convert(from, to, amount) do
     get("/convert?from=#{from}&to=#{to}&amount=#{amount}")
   end
 
